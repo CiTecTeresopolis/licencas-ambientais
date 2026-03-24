@@ -70,7 +70,7 @@ const Index = () => {
               />
               <StatsCard
                 title="Modalidades"
-                value={uniqueLicenciados}
+                value={uniqueModalidades}
                 icon={ScrollText}
               />
               <StatsCard
