@@ -69,15 +69,15 @@ const Index = () => {
                 icon={FileCheck2}
               />
               <StatsCard
+                title="Modalidade"
+                value={uniqueLicenciados}
+                icon={ScrollText}
+              />
+              <StatsCard
                 title="Maior Modalidade"
                 value={`${modalidadesData[0]?.value}`}
                 description={modalidadesData[0]?.name || "N/A"}
                 icon={FileCheck2}
-              />
-              <StatsCard
-                title="Maior Modalidade"
-                value={uniqueLicenciados}
-                icon={ScrollText}
               />
               <StatsCard
                 title="Ano"
