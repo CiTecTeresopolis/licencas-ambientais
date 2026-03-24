@@ -40,6 +40,21 @@ const DashboardHeader = ({ year, availableYears, onYearChange }: Props) => {
 
         <div className="flex flex-col items-end gap-2">
           <div className="flex items-center gap-2 mt-1">
+            <CalendarDays className="w-4 h-4 text-white" />
+            <Select value={year} onValueChange={onYearChange}>
+              <SelectTrigger className="w-28 h-9 text-sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {availableYears.map((y) => (
+                  <SelectItem key={y} value={y}>
+                    {y}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center gap-2 mt-1">
             <Database className="w-4 h-4 text-white" />
             <Button
               style={{ padding: 15, paddingBottom: 20, paddingTop: 20 }}
@@ -59,21 +74,6 @@ const DashboardHeader = ({ year, availableYears, onYearChange }: Props) => {
             </Button>
           </div>
 
-          <div className="flex items-center gap-2 mt-1">
-            <CalendarDays className="w-4 h-4 text-white" />
-            <Select value={year} onValueChange={onYearChange}>
-              <SelectTrigger className="w-28 h-9 text-sm">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {availableYears.map((y) => (
-                  <SelectItem key={y} value={y}>
-                    {y}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
           <div className="flex items-center gap-2 mt-1">
             <img
               style={{ width: 20, height: 20 }}
