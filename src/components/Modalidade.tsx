@@ -50,9 +50,6 @@ const Modalidade = ({ data }: Props) => {
                 <span className="text-sm font-semibold text-slate-700 truncate">
                   {item.name}
                 </span>
-                <span className="text-[10px] text-slate-400 uppercase font-bold">
-                  Registro #{startIndex + index + 1}
-                </span>
               </div>
               <div className="flex flex-col items-end">
                 <span className="text-lg font-black text-orange-500">
