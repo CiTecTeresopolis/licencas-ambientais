@@ -39,6 +39,7 @@ export function countByModalidade(records: LicenseRecord[]) {
     .sort((a, b) => b.value - a.value);
 }
 
+
 export function countByMonth(records: LicenseRecord[]) {
   const months = [
     "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",

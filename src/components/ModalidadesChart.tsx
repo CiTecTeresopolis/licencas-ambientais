@@ -47,10 +47,15 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-const getTopWithTies = (data: { name: string; value: number }[], topN: number = 5) => {
+const getTopWithTies = (
+  data: { name: string; value: number }[],
+  topN: number = 5,
+) => {
   if (data.length <= topN) return data;
   const thresholdValue = data[topN - 1].value;
-  return data.filter((item, index) => index < topN || item.value === thresholdValue);
+  return data.filter(
+    (item, index) => index < topN || item.value === thresholdValue,
+  );
 };
 
 const ModalidadesChart = ({ data }: Props) => {
@@ -60,7 +65,7 @@ const ModalidadesChart = ({ data }: Props) => {
     <Card className="col-span-1 flex flex-col h-full">
       <CardHeader className="pb-2 border-b mb-4">
         <CardTitle className="text-sm font-bold uppercase tracking-wider text-slate-500">
-          Distribuição por Modalidade
+          Distribuição por Modalidade (Top 5)
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
