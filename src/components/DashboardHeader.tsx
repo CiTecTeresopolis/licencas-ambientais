@@ -41,9 +41,19 @@ const DashboardHeader = ({ year, availableYears, onYearChange }: Props) => {
         <div className="flex flex-col items-end gap-2">
           <div className="flex items-center gap-2 mt-1">
             <Database className="w-4 h-4 text-white" />
-            <Button style={{ padding: 15, paddingBottom: 20, paddingTop: 20 }} variant="secondary" size="lg" asChild className="hidden sm:flex bg-white/10 hover:bg-white/20 text-white border-none h-7 px-2 text-xs mt-2">
-              <a href={`https://dados.teresopolis.rj.gov.br/dataset/licencas-ambientais/resource/5a8220fd-efee-4ad5-87b1-322a50cddecf`} target="_blank" rel="noreferrer" download>
-
+            <Button
+              style={{ padding: 15, paddingBottom: 20, paddingTop: 20 }}
+              variant="secondary"
+              size="lg"
+              asChild
+              className="hidden sm:flex bg-white/10 hover:bg-white/20 text-white border-none h-7 px-2 text-xs mt-2"
+            >
+              <a
+                href={`https://dados.teresopolis.rj.gov.br/dataset/licencas-ambientais/resource/5a8220fd-efee-4ad5-87b1-322a50cddecf`}
+                target="_blank"
+                rel="noreferrer"
+                download
+              >
                 Base de Dados
               </a>
             </Button>
@@ -63,6 +73,30 @@ const DashboardHeader = ({ year, availableYears, onYearChange }: Props) => {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+          <div className="flex items-center gap-2 mt-1">
+            <img
+              style={{ width: 20, height: 20 }}
+              src="meio-ambiente.png"
+              alt="Meio Ambiente"
+              className="object-contain"
+            />
+            <Button
+              style={{ padding: 15, paddingBottom: 20, paddingTop: 20 }}
+              variant="secondary"
+              size="lg"
+              asChild
+              className="hidden sm:flex bg-white/10 hover:bg-white/20 text-white border-none h-7 px-2 text-xs mt-2"
+            >
+              <a
+                href={`https://www.teresopolis.rj.gov.br/estrutura/meio-ambiente/`}
+                target="_blank"
+                rel="noreferrer"
+                download
+              >
+                Meio Ambiente
+              </a>
+            </Button>
           </div>
         </div>
       </div>
