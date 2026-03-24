@@ -36,6 +36,7 @@ const Index = () => {
   const monthData = useMemo(() => countByMonth(records), [records]);
   const topData = useMemo(() => getTopLicenciados(records), [records]);
   const modalidadesData = useMemo(() => countByModalidade(records), [records]);
+  console.log("Modalidades Data:", modalidadesData);
   const uniqueLicenciados = useMemo(
     () => new Set(records.map((r) => r.licenciado)).size,
     [records],
@@ -68,9 +69,10 @@ const Index = () => {
                 icon={FileCheck2}
               />
               <StatsCard
-                title="Licenciados Únicos"
-                value={uniqueLicenciados}
-                icon={Users}
+                title="Maior Modalidade"
+                value={`${modalidadesData[0]?.value}`}
+                description={modalidadesData[0]?.name || "N/A"}
+                icon={FileCheck2}
               />
               <StatsCard
                 title="Modalidades"
