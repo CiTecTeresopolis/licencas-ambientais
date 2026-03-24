@@ -68,13 +68,13 @@ const Index = () => {
                 icon={FileCheck2}
               />
               <StatsCard
-                title="Licenciados Únicos"
-                value={uniqueLicenciados}
-                icon={Users}
-              />
-              <StatsCard
                 title="Modalidades"
                 value={uniqueModalidades}
+                icon={ScrollText}
+              />
+              <StatsCard
+                title="Maior Modalidade"
+                value={uniqueLicenciados}
                 icon={ScrollText}
               />
               <StatsCard
