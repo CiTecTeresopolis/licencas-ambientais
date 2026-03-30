@@ -52,7 +52,7 @@ const TopLicenciados = ({ data }: Props) => {
     <Card className="col-span-1">
       <CardHeader className="pb-2 border-b mb-4">
         <CardTitle className="text-sm font-bold uppercase tracking-wider text-slate-500">
-          Principais Licenciados (Top 5)
+          Maior Número de Licenciamento
         </CardTitle>
       </CardHeader>
       <CardContent>
