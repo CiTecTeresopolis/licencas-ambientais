@@ -11,12 +11,24 @@ import {
 const COLORS = [
   "#264653",
   "#2a9d8f",
-  "#dfa208ff",
+  "#dfa208",
   "#f4a261",
   "#e76f51",
-  "#e76f51",
-  "hsl(340, 60%, 50%)",
+  "#8ab17d",
+  "#b56576",
+  "#588157",
+  "#3d5a80",
+  "#98c1d9",
+  "#e0fbfc",
+  "#ee6c4d",
+  "#293241",
 ];
+
+const getColor = (index: number) => {
+  if (index < COLORS.length) return COLORS[index];
+  // Gera uma cor baseada no índice se ultrapassar a lista
+  return `hsl(${(index * 137.5) % 360}, 65%, 50%)`;
+};
 
 interface Props {
   data: { name: string; value: number }[];
@@ -72,7 +84,7 @@ const TopLicenciados = ({ data }: Props) => {
               labelLine={false} // Remove as linhas dos labels para um visual mais limpo
             >
               {data.map((entry, i) => (
-                <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                <Cell key={i} fill={getColor(i)} />
               ))}
             </Pie>
 

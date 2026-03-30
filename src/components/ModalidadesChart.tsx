@@ -7,18 +7,25 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { getTopWithTies } from "@/lib/csv-parser";
 
 const COLORS = [
   "#264653",
   "#2a9d8f",
-  "#dfa208ff",
+  "#dfa208",
   "#f4a261",
   "#e76f51",
   "#8bc34a",
   "#00bcd4",
   "#3f51b5",
-  "hsl(340, 60%, 50%)",
+  "#673ab7",
+  "#e91e63",
 ];
+
+const getColor = (index: number) => {
+  if (index < COLORS.length) return COLORS[index];
+  return `hsl(${(index * 137.5) % 360}, 65%, 50%)`;
+};
 
 interface Props {
   data: { name: string; value: number }[];
@@ -47,16 +54,6 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-const getTopWithTies = (
-  data: { name: string; value: number }[],
-  topN: number = 5,
-) => {
-  if (data.length <= topN) return data;
-  const thresholdValue = data[topN - 1].value;
-  return data.filter(
-    (item, index) => index < topN || item.value === thresholdValue,
-  );
-};
 
 const ModalidadesChart = ({ data }: Props) => {
   const chartData = getTopWithTies(data, 5);
@@ -84,7 +81,7 @@ const ModalidadesChart = ({ data }: Props) => {
               labelLine={false}
             >
               {chartData.map((entry, i) => (
-                <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                <Cell key={i} fill={getColor(i)} />
               ))}
             </Pie>
 
