@@ -5,6 +5,8 @@ import {
   getTopLicenciados,
   countByModalidade,
   getTopWithTies,
+  getLicenciadosStacked,
+  getTopWithTiesStacked,
 } from "@/lib/csv-parser";
 import StatsCard from "@/components/StatsCard";
 import Modalidade from "@/components/Modalidade";
@@ -36,6 +38,7 @@ const Index = () => {
 
   const monthData = useMemo(() => countByMonth(records), [records]);
   const topData = useMemo(() => getTopLicenciados(records), [records]);
+  const stackedTopData = useMemo(() => getLicenciadosStacked(records), [records]);
   const modalidadesData = useMemo(() => countByModalidade(records), [records]);
 
   const uniqueModalidades = useMemo(
@@ -86,7 +89,10 @@ const Index = () => {
 
             {/* Charts Row 1 */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <TopLicenciados data={getTopWithTies(topData, 5)} />
+              <TopLicenciados 
+                data={getTopWithTiesStacked(stackedTopData, 2)} 
+                allModalidades={modalidadesData} 
+              />
               <ModalidadesChart data={modalidadesData} />
             </div>
 

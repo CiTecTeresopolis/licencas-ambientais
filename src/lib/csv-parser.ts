@@ -9,6 +9,13 @@ export interface LicenseRecord {
   diarioOficial: string;
 }
 
+export interface StackedLicenseData {
+  name: string;
+  total: number;
+  diversity: number;
+  [key: string]: string | number;
+}
+
 export function parseCSV(text: string): LicenseRecord[] {
   const result = Papa.parse(text, {
     delimiter: ";",
@@ -77,4 +84,48 @@ export function getTopWithTies(data: { name: string; value: number }[], topN: nu
   const thresholdValue = data[topN - 1].value;
   // Encontra todos os elementos que têm valor igual ou maior que o valor da enésima posição
   return data.filter(item => item.value >= thresholdValue);
+}
+
+export function getLicenciadosStacked(records: LicenseRecord[]): StackedLicenseData[] {
+  const dataMap: Record<string, StackedLicenseData> = {};
+  
+  records.forEach((r) => {
+    const lic = r.licenciado;
+    const mod = r.modalidade || "Não informado";
+    
+    if (!dataMap[lic]) {
+      dataMap[lic] = { name: lic, total: 0, diversity: 0 };
+    }
+    
+    if (!dataMap[lic][mod]) {
+      dataMap[lic][mod] = 0;
+      dataMap[lic].diversity += 1;
+    }
+    
+    dataMap[lic][mod] = ((dataMap[lic][mod] as number) || 0) + 1;
+    dataMap[lic].total += 1;
+  });
+
+  return Object.values(dataMap).sort((a, b) => {
+    if (b.total !== a.total) {
+      return b.total - a.total;
+    }
+    return b.diversity - a.diversity;
+  });
+}
+
+export function getTopWithTiesStacked(data: StackedLicenseData[], topN: number) {
+  if (data.length <= topN) return data;
+  
+  const thresholdItem = data[topN - 1];
+  let includeCount = topN;
+  while (
+    includeCount < data.length &&
+    data[includeCount].total === thresholdItem.total &&
+    data[includeCount].diversity === thresholdItem.diversity
+  ) {
+    includeCount++;
+  }
+  
+  return data.slice(0, includeCount);
 }

@@ -9,23 +9,7 @@ import {
 } from "recharts";
 import { getTopWithTies } from "@/lib/csv-parser";
 
-const COLORS = [
-  "#264653",
-  "#2a9d8f",
-  "#dfa208",
-  "#f4a261",
-  "#e76f51",
-  "#8bc34a",
-  "#00bcd4",
-  "#3f51b5",
-  "#673ab7",
-  "#e91e63",
-];
-
-const getColor = (index: number) => {
-  if (index < COLORS.length) return COLORS[index];
-  return `hsl(${(index * 137.5) % 360}, 65%, 50%)`;
-};
+import { getModalidadeColor } from "@/lib/utils";
 
 interface Props {
   data: { name: string; value: number }[];
@@ -81,7 +65,7 @@ const ModalidadesChart = ({ data }: Props) => {
               labelLine={false}
             >
               {chartData.map((entry, i) => (
-                <Cell key={i} fill={getColor(i)} />
+                <Cell key={i} fill={getModalidadeColor(entry.name, data)} />
               ))}
             </Pie>
 
