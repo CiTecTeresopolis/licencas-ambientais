@@ -61,13 +61,20 @@ export function countByMonth(records: LicenseRecord[]) {
   return months.map((name) => ({ name, value: counts[name] }));
 }
 
-export function getTopLicenciados(records: LicenseRecord[], top = 10) {
+export function getTopLicenciados(records: LicenseRecord[]) {
   const counts: Record<string, number> = {};
   records.forEach((r) => {
     counts[r.licenciado] = (counts[r.licenciado] || 0) + 1;
   });
   return Object.entries(counts)
     .map(([name, value]) => ({ name, value }))
-    .sort((a, b) => b.value - a.value)
-    // .slice(0, top);
+    .sort((a, b) => b.value - a.value);
+}
+
+export function getTopWithTies(data: { name: string; value: number }[], topN: number) {
+  if (data.length <= topN) return data;
+  
+  const thresholdValue = data[topN - 1].value;
+  // Encontra todos os elementos que têm valor igual ou maior que o valor da enésima posição
+  return data.filter(item => item.value >= thresholdValue);
 }

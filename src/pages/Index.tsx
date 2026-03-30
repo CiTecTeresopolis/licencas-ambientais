@@ -4,6 +4,7 @@ import {
   LicenseRecord,
   getTopLicenciados,
   countByModalidade,
+  getTopWithTies,
 } from "@/lib/csv-parser";
 import StatsCard from "@/components/StatsCard";
 import Modalidade from "@/components/Modalidade";
@@ -85,7 +86,7 @@ const Index = () => {
 
             {/* Charts Row 1 */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <TopLicenciados data={topData.slice(0, 5)} />
+              <TopLicenciados data={getTopWithTies(topData, 5)} />
               <ModalidadesChart data={modalidadesData} />
             </div>
 
